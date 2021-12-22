@@ -1,7 +1,7 @@
 // import { StatusBar } from 'expo-status-bar';
 import { Appbar } from 'react-native-paper';
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 // import { NavigationContainer } from '@react-navigation/native';
 // import { createStackNavigator } from '@react-navigation/stack';
 
