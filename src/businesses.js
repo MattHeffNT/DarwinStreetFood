@@ -1,49 +1,83 @@
 // import { StatusBar } from 'expo-status-bar';
-import { Appbar } from 'react-native-paper';
+import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { FlatGrid } from 'react-native-super-grid';
+import { Text, View, StyleSheet } from 'react-native';
 // import { NavigationContainer } from '@react-navigation/native';
 // import { createStackNavigator } from '@react-navigation/stack';
+// const leftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 
-function App() {
+export default function Businesses() {
+    // TO DO axios fetch and populate name and details automatically
+
+    // eslint-disable-next-line no-unused-vars
+    const [items, setItems] = React.useState([
+        { name: 'TURQUOISE', code: '#1abc9c' },
+        { name: 'EMERALD', code: '#2ecc71' },
+        { name: 'PETER RIVER', code: '#3498db' },
+    ]);
     return (
-        <View style={styles.container}>
-            <Appbar.Header style={styles.nav}>
-                <Appbar.Action
-                    icon="home"
-                    onPress={() => console.log('pressed home')} // this would return the user back home
-                />
-                <Appbar.Content
-                    title="Darwin Street Food"
-                    style={styles.TitleText}
-                ></Appbar.Content>
-            </Appbar.Header>
-        </View>
+        <FlatGrid
+            itemDimension={130}
+            data={items}
+            spacing={10}
+            renderItem={({ item }) => (
+                <View
+                // style={[
+                //     styles.itemContainer,
+                //     { backgroundColor: item.code },
+                // ]}
+                >
+                    {/* <Text style={styles.itemName}>{item.name}</Text>
+                    <Text style={styles.itemCode}>{item.code}</Text> */}
+
+                    <Card>
+                        <Card.Title title={item.name} />
+                        <Card.Content></Card.Content>
+                        <Card.Cover style={{ backgroundColor: item.code }} />
+                    </Card>
+                </View>
+            )}
+
+            //  <Card>
+            //             {/* <Card.Title
+            //                 title="Salty Plum Cafe"
+            //                 subtitle="Card Subtitle"
+            //                 left={leftContent}
+            //             /> */}
+            //             <Card.Content>
+            //                 <Title>Salty Plum Cafe</Title>
+            //                 <Paragraph>Open Now</Paragraph>
+            //             </Card.Content>
+            //             <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+            //             <Card.Actions>
+            //                 {/* <Button>Cancel</Button> */}
+            //                 <Button>Ok</Button>
+            //             </Card.Actions>
+            //         </Card>
+        />
     );
 }
 
-export default App;
-
 const styles = StyleSheet.create({
-    buttonColor: {
-        color: '#006FBA',
-        fontFamily: 'bree,sans-serif',
+    gridView: {
+        marginTop: 10,
+        flex: 1,
     },
-
-    nav: {
-        textAlign: 'center',
-        marginLeft: 10,
-        marginRight: 50,
-        left: 0,
-        right: 0,
-        // bottom: -5,
-        // top: 30,
-        zIndex: 0,
-        backgroundColor: '#00936c',
+    itemContainer: {
+        justifyContent: 'flex-end',
+        borderRadius: 5,
+        padding: 10,
+        height: 150,
     },
-    TitleText: {
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 20,
+    itemName: {
+        fontSize: 16,
+        color: '#fff',
+        fontWeight: '600',
+    },
+    itemCode: {
+        fontWeight: '600',
+        fontSize: 12,
+        color: '#fff',
     },
 });
