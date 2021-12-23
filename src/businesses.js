@@ -1,15 +1,19 @@
-// import { StatusBar } from 'expo-status-bar';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import * as React from 'react';
 import { FlatGrid } from 'react-native-super-grid';
 import { Text, View, StyleSheet } from 'react-native';
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createStackNavigator } from '@react-navigation/stack';
-// const leftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
-
+import axios from 'axios';
+const baseUrl =
+    'https://open-darwin.opendata.arcgis.com/datasets/6d6453a83bbc4ab8b7591e545dd40d65_0.geojson';
 export default function Businesses() {
-    // TO DO axios fetch and populate name and details automatically
+    // grab the darwin street food api (and at the moment) log the data to the console. TO DO: grab the data and assign to variables which we can then display in the app.
 
+    axios({
+        method: 'get',
+        url: `${baseUrl}`,
+    }).then((response) => {
+        console.log(response.data);
+    });
     // eslint-disable-next-line no-unused-vars
     const [items, setItems] = React.useState([
         { name: 'TURQUOISE', code: '#1abc9c' },
@@ -59,6 +63,7 @@ export default function Businesses() {
     );
 }
 
+// eslint-disable-next-line no-unused-vars
 const styles = StyleSheet.create({
     gridView: {
         marginTop: 10,
